@@ -1,0 +1,4 @@
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let hint of hints$ | async" [value]="hint">{{hint}}</mat-option>
+</mat-autocomplete>
+
