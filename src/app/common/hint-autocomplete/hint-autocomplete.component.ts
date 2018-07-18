@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/internal/operators";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs/index";
+import {HintProviderService} from '../services/hint-provider.service';
 
 @Component({
   selector: 'app-hint-autocomplete',
@@ -15,7 +16,7 @@ export class HintAutocompleteComponent implements OnInit {
   private text: string;
   @Input() code: string;
 
-  constructor(private hintService: FilterTextHintsProviderService) {
+  constructor(private hintService: HintProviderService) {
     this.hints$ = this.control.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
