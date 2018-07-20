@@ -1,0 +1,9 @@
+<mat-form-field class="full-width">
+  <mat-chip-list class="list">
+    <mat-chip *ngFor="let value of values" [removable]="true" (removed)="remove(value)">
+      {{value.value}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+  <button mat-icon-button class="clear-btn" (click)="clear()"><mat-icon>clear</mat-icon></button>
+</mat-form-field>
