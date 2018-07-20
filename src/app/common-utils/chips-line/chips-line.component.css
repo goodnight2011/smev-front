@@ -7,4 +7,6 @@
   width: max-content;
 }
 .clear-btn{
+  position:absolute;
+  right:0px;
 }

@@ -28,6 +28,6 @@ export class ChipsLineComponent implements OnInit {
   }
 
   clear():void{
-
+    this.values = [];
   }
 }
