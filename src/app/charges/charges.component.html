@@ -1,1 +1,2 @@
-<app-chips-line [values]="[{value: 'one', code: 'one'}, {value: 'two', codl: 'two'}, {value: 'three', code: 'three'}]"></app-chips-line>
+<app-chips-line #chips [values]="[{value: 'one', code: 'one'}, {value: 'two', code: 'two'}, {value: 'three', code: 'three'}]"></app-chips-line>
+{{chips.isActive() ? 'active' : 'inactive'}}

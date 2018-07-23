@@ -1,4 +1,4 @@
-<mat-form-field class="full-width">
+<mat-form-field class="full-width" (mouseover)="activate(true)" (mouseleave)="activate(false)">
   <mat-chip-list class="list">
     <mat-chip *ngFor="let value of values" [removable]="true" (removed)="remove(value)">
       {{value.value}}

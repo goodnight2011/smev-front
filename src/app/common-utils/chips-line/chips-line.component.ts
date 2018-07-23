@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 
-interface CodeWithValue{
+interface CodeWithValue {
   code: string;
   value: string;
 }
@@ -13,13 +13,15 @@ interface CodeWithValue{
 export class ChipsLineComponent implements OnInit {
 
   @Input() values: CodeWithValue[];
+  active: boolean = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  remove(value: CodeWithValue):void{
+  remove(value: CodeWithValue): void {
     const index = this.values.indexOf(value);
 
     if (index >= 0) {
@@ -27,7 +29,15 @@ export class ChipsLineComponent implements OnInit {
     }
   }
 
-  clear():void{
+  clear(): void {
     this.values = [];
+  }
+
+  protected activate(is: boolean): void {
+    this.active = is;
+  }
+
+  isActive(): boolean{
+    return this.active;
   }
 }
