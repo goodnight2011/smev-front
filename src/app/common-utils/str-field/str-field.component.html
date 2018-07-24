@@ -1,4 +1,5 @@
 <mat-form-field appearance="outline">
   <mat-label *ngIf="config.title">{{config.title}}</mat-label>
-  <input #fld [placeholder]="config!.placeholder" [value]="value" (input)="onValueChanges(fld)" matInput>
+  <input #fld [placeholder]="config!.placeholder" [value]="value" (input)="onValueChanges(fld)" matInput
+         [formControl]="formField" >
 </mat-form-field>

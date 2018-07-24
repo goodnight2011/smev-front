@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 
 export class StrFieldConfig{
   placeholder?: string;
@@ -23,6 +23,7 @@ export class StrFieldComponent implements OnInit {
 
   @Input() value:string = '';
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+  protected formField = new FormControl('', [control => [{key: 'custom'}]]);
 
   constructor() {}
 

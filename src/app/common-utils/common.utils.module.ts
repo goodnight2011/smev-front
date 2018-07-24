@@ -8,13 +8,14 @@ import {
 } from '@angular/material';
 import { ChipsLineComponent } from './chips-line/chips-line.component';
 import { StrFieldComponent } from './str-field/str-field.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     FormsModule,
     MatButtonModule,
     MatFormFieldModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatChipsModule,
     MatIconModule,
