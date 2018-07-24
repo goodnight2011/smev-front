@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { PaymentsComponent } from './payments.component';
+import {CommonUtilsModule} from '../common-utils/common.utils.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonUtilsModule
   ],
   declarations: [PaymentsComponent]
 })

@@ -1,2 +1,4 @@
 <app-chips-line #chips [values]="[{value: 'one', code: 'one'}, {value: 'two', code: 'two'}, {value: 'three', code: 'three'}]"></app-chips-line>
-{{chips.isActive() ? 'active' : 'inactive'}}
+<app-str-field [(value)]="strValue" [config]="strConfig" >
+</app-str-field>
+<p>str value is: {{strValue}}</p>

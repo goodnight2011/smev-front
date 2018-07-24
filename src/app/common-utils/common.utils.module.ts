@@ -7,9 +7,12 @@ import {
   MatInputModule
 } from '@angular/material';
 import { ChipsLineComponent } from './chips-line/chips-line.component';
+import { StrFieldComponent } from './str-field/str-field.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
+    FormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -19,7 +22,7 @@ import { ChipsLineComponent } from './chips-line/chips-line.component';
     BrowserModule,
     BrowserAnimationsModule,
   ],
-  declarations: [HintAutocompleteComponent, ChipsLineComponent],
-  exports:[ChipsLineComponent]
+  declarations: [HintAutocompleteComponent, ChipsLineComponent, StrFieldComponent],
+  exports:[ChipsLineComponent, StrFieldComponent]
 })
 export class CommonUtilsModule { }

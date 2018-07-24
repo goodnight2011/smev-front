@@ -1,6 +1,47 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~material-design-icons-iconfont/dist/material-design-icons.css";
 
+.mat-form-field-appearance-outline .mat-form-field-infix{
+  padding: 0px 0px 5px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-label {
+  top: 1.8em;
+}
+
+.mat-focused.mat-form-field-appearance-outline .mat-form-field-label {
+  top: 1.8em;
+}
+
+.mat-focused.mat-form-field-appearance-outline .mat-form-field-label.mat-empty.mat-form-field-empty {
+  top: 1.8em;
+
+}
+
+.mat-form-field-appearance-outline .mat-form-field-label.mat-empty.mat-form-field-empty{
+  top: 1.2em;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper{
+  padding-bottom: 0px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper{
+  margin: 0px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-start{
+  height:30px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-gap{
+  height:30px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-end{
+  height:30px;
+}
+
 .compressed-field .mat-form-field-infix{
   padding: 0px 0px 5px;
 }
@@ -9,8 +50,13 @@
   top: 1.8em;
 }
 
-.mat-focused.compressed-field .mat-form-field-label, .mat-form-field-label.mat-empty.mat-form-field-empty{
+.mat-focused.compressed-field .mat-form-field-label {
   top: 1.8em;
+}
+
+.mat-focused.compressed-field .mat-form-field-label.mat-empty.mat-form-field-empty {
+  top: 1.8em;
+
 }
 
 .compressed-field .mat-form-field-label.mat-empty.mat-form-field-empty{
@@ -25,18 +71,15 @@
   margin: 0px;
 }
 
-.compressed-field .mat-form-field-outline-start,.mat-form-field-outline-gap,.mat-form-field-outline-end{
+.compressed-field .mat-form-field-outline-start{
   height:30px;
 }
 
-.mat-form-field-type-mat-chip-list .mat-form-field-wrapper{
-  padding-bottom: 0px;
+.compressed-field .mat-form-field-outline-gap{
+  height:30px;
 }
 
-.mat-form-field-type-mat-chip-list .mat-form-field-underline{
-  bottom: 0px;
+.compressed-field .mat-form-field-outline-end{
+  height:30px;
 }
 
-.mat-form-field-type-mat-chip-list .mat-form-field-infix{
-  border-top: 0px;
-}
