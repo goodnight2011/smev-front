@@ -1,5 +1,7 @@
 <mat-form-field appearance="outline">
   <mat-label *ngIf="config.title">{{config.title}}</mat-label>
   <input #fld [placeholder]="config!.placeholder" [value]="value" (input)="onValueChanges(fld)" matInput
-         [formControl]="formField" >
+         [formControl]="formField">
+  <mat-error *ngFor="let vld of errors()">{{vld.text}}</mat-error>
+  <mat-hint *ngIf="config!.hint">hint for fld</mat-hint>
 </mat-form-field>

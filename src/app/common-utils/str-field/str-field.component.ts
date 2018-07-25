@@ -1,15 +1,24 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, ValidationErrors, Validators} from '@angular/forms';
+import {forEach} from '@angular/router/src/utils/collection';
 
 export class StrFieldConfig{
   placeholder?: string;
   title?: string;
   mask?: Mask;
+  hint?:string;
+  validators? : FldValidator[];
 }
 
 export class Mask{
   format?: string;
   maxLength?: number;
+}
+
+export class FldValidator{
+  code: string;
+  predicate: (value: string)=> boolean;
+  text: string;
 }
 
 @Component({
@@ -19,13 +28,27 @@ export class Mask{
 })
 export class StrFieldComponent implements OnInit {
 
-  @Input() config: StrFieldConfig = new StrFieldConfig();
-
+  @Input() config: StrFieldConfig ;
   @Input() value:string = '';
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
-  protected formField = new FormControl('', [control => [{key: 'custom'}]]);
+  protected formField ;
 
-  constructor() {}
+  validate(control: AbstractControl): ValidationErrors{
+    if(!(this && this.config&& this.config.validators))
+      return {};
+
+    let ret = {};
+    this.config.validators.forEach(each => {
+      if(!each.predicate(control.value))
+        ret[each.code] = true;
+    });
+
+    return ret;
+  }
+
+  constructor() {
+    this.formField = new FormControl('', control => this.validate(control)  );
+  }
 
   ngOnInit() {
   }
@@ -44,6 +67,19 @@ export class StrFieldComponent implements OnInit {
 
     this.value = fld.value;
     this.valueChange.emit(fld.value);
+  }
+
+
+  errors():FldValidator[]{
+    if(!this.formField.errors || !this.config || ! this.config.validators)
+      return [];
+
+    let ret: FldValidator[] = [];
+    this.config.validators.forEach(each => {
+      if(this.formField.errors[each.code])
+        ret.push(each);
+    });
+    return ret;
   }
 
 }
