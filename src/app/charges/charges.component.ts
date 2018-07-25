@@ -3,6 +3,7 @@ import {FldValidator, StrFieldConfig} from '../common-utils/str-field/str-field.
 import {ChipsLineComponent} from '../common-utils/chips-line/chips-line.component';
 import {CodeWithSourceMap} from 'codelyzer/angular/metadata';
 import {Validators} from '@angular/forms';
+import {DateFldConfig} from '../common-utils/date-field/date-field.component';
 
 @Component({
   selector: 'app-charges',
@@ -28,10 +29,20 @@ export class ChargesComponent implements OnInit {
     ]
   };
 
+  dateConfig: DateFldConfig = {
+    placeholder: 'choose date',
+    title: 'date'
+  };
+
+  date: Date;
+
   constructor() {
   }
 
   ngOnInit() {
   }
 
+  onDateChange(date: Date) {
+    this.date = date;
+  }
 }
