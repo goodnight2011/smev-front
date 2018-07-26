@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/internal/operators";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs/index";
-import {HintProviderService} from '../services/hint-provider.service';
+import {HintProviderService} from '../services/hint-provider/hint-provider.service';
 
 @Component({
   selector: 'app-hint-autocomplete',

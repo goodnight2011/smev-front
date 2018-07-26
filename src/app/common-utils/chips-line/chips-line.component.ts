@@ -1,9 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-
-interface CodeWithValue {
-  code: string;
-  value: string;
-}
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {CodeWithValue} from '../code-with-value';
+import {SearchFiltersHolderService} from '../services/search-filters-holder/search-filters-holder.service';
 
 @Component({
   selector: 'app-chips-line',
@@ -12,29 +9,29 @@ interface CodeWithValue {
 })
 export class ChipsLineComponent implements OnInit {
 
-  @Input() values: CodeWithValue[];
   active: boolean = false;
+  @Output() activeChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() {
+  filterService:SearchFiltersHolderService;
+
+  constructor( filterService:SearchFiltersHolderService) {
+    this.filterService = filterService;
   }
 
   ngOnInit() {
   }
 
   remove(value: CodeWithValue): void {
-    const index = this.values.indexOf(value);
-
-    if (index >= 0) {
-      this.values.splice(index, 1);
-    }
+    this.filterService.remove(value.code);
   }
 
   clear(): void {
-    this.values = [];
+    this.filterService.clear();
   }
 
   protected activate(is: boolean): void {
     this.active = is;
+    this.activeChange.emit(is);
   }
 
   isActive(): boolean{

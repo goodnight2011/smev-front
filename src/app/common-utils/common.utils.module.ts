@@ -13,6 +13,7 @@ import {StrFieldComponent} from './str-field/str-field.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DateFieldComponent} from './date-field/date-field.component';
 import {DateFieldAdapter} from './date-field/date-field.adapter';
+import {SearchFiltersHolderService} from './services/search-filters-holder/search-filters-holder.service';
 
 const DATE_FORMATS = {
   parse: {
@@ -41,7 +42,7 @@ const DATE_FORMATS = {
     BrowserAnimationsModule,
   ],
   declarations: [HintAutocompleteComponent, ChipsLineComponent, StrFieldComponent, DateFieldComponent],
-  exports: [ChipsLineComponent, StrFieldComponent, DateFieldComponent],
+  exports: [ChipsLineComponent, StrFieldComponent, DateFieldComponent ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'ru'},
     {provide: DateAdapter, useClass: DateFieldAdapter},
