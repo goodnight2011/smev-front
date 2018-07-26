@@ -1,11 +1,7 @@
-<!--<mat-form-field>-->
-  <!--<input matInput [matDatepicker]="picker" placeholder="config!.placeholder" (dateInput)="onDate($event.value)" [formControl]="date">-->
-  <!--<mat-label>{{config!.title}}</mat-label>-->
-  <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-  <!--<mat-datepicker #picker></mat-datepicker>-->
-<!--</mat-form-field>-->
-<mat-form-field appearance="outline">
-  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+<!--<mat-form-field &lt;!&ndash;appearance="outline"&ndash;&gt;>-->
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" [placeholder]="config!.placeholder" (dateInput)="onDate($event.value)" [formControl]="date">
+  <mat-label *ngIf="config.title">{{config.title}}</mat-label>
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>

@@ -1,6 +1,10 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~material-design-icons-iconfont/dist/material-design-icons.css";
 
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-datepicker-toggle .mat-icon-button{
+  width: 1em;
+  height: 2em;
+}
 .mat-form-field-appearance-outline .mat-error{
   margin-top:20px;
 }

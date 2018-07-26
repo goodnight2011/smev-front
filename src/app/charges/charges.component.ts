@@ -13,21 +13,21 @@ import {DateFldConfig} from '../common-utils/date-field/date-field.component';
 export class ChargesComponent implements OnInit {
 
   values: any[] = [{value: 'one', code: 'one'}, {value: 'two', code: 'two'}, {value: 'three', code: 'three'}];
-  strValue: string = '';
-  strConfig: StrFieldConfig = {
-    placeholder: 'placeholder',
-    title: 'title',
-    mask: {
-      format: '[0-9]*',
-      maxLength: 4
-    },
-    validators: [{
-      code: 'empty',
-      predicate: value => value.length == 0,
-      text: 'empty field'
-    }
-    ]
-  };
+  // strValue: string = '';
+  // strConfig: StrFieldConfig = {
+  //   placeholder: 'placeholder',
+  //   title: 'title',
+  //   mask: {
+  //     format: '[0-9]*',
+  //     maxLength: 4
+  //   },
+  //   validators: [{
+  //     code: 'empty',
+  //     predicate: value => value.length == 0,
+  //     text: 'empty field'
+  //   }
+  //   ]
+  // };
 
   dateConfig: DateFldConfig = {
     placeholder: 'choose date',

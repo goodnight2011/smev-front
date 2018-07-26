@@ -13,9 +13,9 @@ export class DateFldConfig {
 })
 export class DateFieldComponent implements OnInit {
 
-  // @Input() config: DateFldConfig;
-  // @Output() dateChange: EventEmitter<Date>;
-  // date: FormControl = new FormControl(new Date());
+  @Input() config: DateFldConfig = {};
+  @Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
+  date: FormControl = new FormControl(undefined, control => {});
 
   constructor() {
   }
@@ -23,12 +23,12 @@ export class DateFieldComponent implements OnInit {
   ngOnInit() {
   }
 
-  // @Input('date')
-  // set(date: Date): void{
-  //   this.date.setValue(date);
-  // }
-  //
-  // onDate(date: Date): void {
-  //   this.dateChange.emit(date);
-  // }
+  @Input('date')
+  set(date: Date): void{
+    this.date.setValue(date);
+  }
+
+  onDate(date: Date): void {
+    this.dateChange.emit(date);
+  }
 }
