@@ -16,16 +16,12 @@ export class DateFieldComponent implements OnInit {
   @Input() config: DateFldConfig = {};
   @Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
   date: FormControl = new FormControl(new Date());
+  @Input('value') value: Date;
 
   constructor() {
   }
 
   ngOnInit() {
-  }
-
-  @Input('date')
-  set(date: Date): void{
-    this.date.setValue(date);
   }
 
   onDate(date: Date): void {
