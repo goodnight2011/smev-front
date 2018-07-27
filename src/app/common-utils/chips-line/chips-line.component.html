@@ -1,9 +1,12 @@
-<mat-form-field class="full-width" (mouseover)="activate(true)" (mouseleave)="activate(false)">
+<mat-form-field class="full-width" >
   <mat-chip-list class="list">
-    <mat-chip *ngFor="let value of filterService.getFilters()" [removable]="true" (removed)="remove(value)">
-      {{value.value}}
+    <mat-chip *ngFor="let value of values" [removable]="true" (removed)="remove(value)">
+      {{value.title}}
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
   </mat-chip-list>
-  <button mat-icon-button class="clear-btn" (click)="clear()"><mat-icon>clear</mat-icon></button>
+  <div class="right-aligned">
+    <button mat-icon-button (click)="configure=!configure"><mat-icon>settings</mat-icon></button>
+    <button mat-icon-button (click)="clear()"><mat-icon>clear</mat-icon></button>
+  </div>
 </mat-form-field>

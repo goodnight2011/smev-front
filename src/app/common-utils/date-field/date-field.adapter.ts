@@ -2,8 +2,8 @@ import {NativeDateAdapter} from '@angular/material';
 
 export class DateFieldAdapter extends NativeDateAdapter{
 
-  format(date: Date, displayFormat: Object): string {
-    if (displayFormat == "input") {
+  static formatIt(date: Date, displayFormat: Object){
+      if (displayFormat == "input") {
       let day = date.getDate();
       let month = date.getMonth() + 1;
       let year = date.getFullYear();
@@ -14,7 +14,11 @@ export class DateFieldAdapter extends NativeDateAdapter{
     }
   }
 
-  private _to2digit(n: number) {
+  format(date: Date, displayFormat: Object): string {
+    return DateFieldAdapter.formatIt(date, displayFormat);
+  }
+
+  static _to2digit(n: number) {
     return ('00' + n).slice(-2);
   }
 }

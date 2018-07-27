@@ -1,3 +1,9 @@
-<p>
-  filter-form works!
-</p>
+<form>
+  <app-str-field [config]="uinConfig" [value]="value.uin " (valueChange)="updateValue('uin', $event)"></app-str-field>
+  <app-str-field [config]="innConfig" [value]="value.inn " (valueChange)="updateValue('inn', $event)"></app-str-field>
+  <app-str-field [config]="nakkConfig" [value]="value.nakk " (valueChange)="updateValue('nakk', $event)"></app-str-field>
+  <app-str-field [config]="nameakkConfig" [value]="value.nameakk" (valueChange)="updateValue('nameakk', $event)"></app-str-field>
+  <app-str-field [config]="summConfig" [value]="value.summ" (valueChange)="updateValue('summ', $event)"></app-str-field>
+  <app-date-field [config]="fromConfig" [date]="fromDate" (dateChange)="updateValue('from', $event)"></app-date-field>
+  <app-date-field [config]="toConfig" [date]="toDate" (dateChange)="updateValue('to', $event)"></app-date-field>
+</form>

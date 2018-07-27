@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {Route, RouterModule, Routes} from '@angular/router';
 import {PaymentsComponent} from './payments/payments.component';
-import {ChargesComponent} from './charges/charges.component';
+import {ChargesComponent} from './charges/main/charges.component';
 import {PaymentsModule} from './payments/payments.module';
 import {ChargesModule} from './charges/charges.module';
 

@@ -1,0 +1,8 @@
+<div>
+  <app-chips-line [values]="filters ? filters.filters : []" (removed)="filters.remove($event)"
+                  (removedAll)="filters.removeAll()"></app-chips-line>
+  <app-filter-form *ngIf="chips && chips.configure"></app-filter-form>
+  <app-date-field [(date)]="date"></app-date-field>
+  <button (click)="mutateDate()">clear</button>
+  <p>date is: {{date}}</p>
+</div>

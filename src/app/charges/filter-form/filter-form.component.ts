@@ -1,4 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {StrFieldConfig} from '../../common-utils/str-field/str-field.component';
+import {DateFldConfig} from '../../common-utils/date-field/date-field.component';
+import {TitleWithCode} from '../../common-utils/code-with-value';
+import {DateFieldAdapter} from '../../common-utils/date-field/date-field.adapter';
+import {NativeDateAdapter} from '@angular/material';
+
+export class ChargeFilter {
+  uin?: string;
+  inn?: string;
+  nakk?: string;
+  summ?: string;
+  nameakk?: string;
+  from?: Date;
+  to?: Date;
+}
 
 @Component({
   selector: 'app-filter-form',
@@ -7,9 +22,93 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterFormComponent implements OnInit {
 
-  constructor() { }
+  value = new ChargeFilter();
+  uinConfig: StrFieldConfig = {title: 'УИН', mask: {format: '[0-9].*'}};
+  innConfig: StrFieldConfig = {title: 'ИНН', mask: {format: '[0-9].*', maxLength: 12}};
+  nakkConfig: StrFieldConfig = {title: 'Номер аттестата аккредитации'};
+  nameakkConfig: StrFieldConfig = {title: 'Наименование аккредитованного лица'};
+  summConfig: StrFieldConfig = {title: 'Сумма платежа', mask: {format: '[0-9\.].*'}};
+  fromConfig: DateFldConfig = {title: 'Дата начисления от'};
+  toConfig: DateFldConfig = {title: 'Дата начисления до'};
+  filters: TitleWithCode[] = [];
+  configs = {
+    uin: this.uinConfig,
+    inn: this.innConfig,
+    nakk: this.nakkConfig,
+    nameakk: this.nameakkConfig,
+    summ: this.summConfig,
+    from: this.fromConfig,
+    to: this.toConfig
+  };
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  indexOF(code: string): number {
+    let dateIndex = -1;
+    this.filters.find((elem, i) => {
+      if (elem.code === code) {
+        dateIndex = i;
+        return true;
+      }
+      return false;
+    });
+    return dateIndex;
+  }
+
+  updateValue(code: string, value: string | Date): void {
+    this.value[code] = value;
+    this.filters = this.filters.slice();
+    if (code === 'from' || code === 'to') {
+      let dateIndex = this.indexOF('date');
+      let dateElem = dateIndex == -1 ? null : this.filters[dateIndex];
+
+      if (this.value.from || this.value.to) {
+        let fromTitle = this.value.from ? ' от: ' + DateFieldAdapter.formatIt(this.value.from, 'input') : '';
+        let toTitle = this.value.to ? ' до ' + DateFieldAdapter.formatIt(this.value.to, 'input') : '';
+        let title = 'Дата начисления' + fromTitle + toTitle;
+        if (!dateElem)
+          this.filters.push({code: 'date', title: title});
+        else
+          dateElem.title = title;
+      }
+      else {
+        if (dateElem)
+          this.filters.splice(dateIndex, 1);
+      }
+    }
+    else {
+      let indexof = this.indexOF(code);
+      if (value) {
+        let title = this.configs[code].title + ':' + value;
+        if (indexof == -1)
+          this.filters.push({code: code, title: title});
+        else this.filters[indexof].title = title;
+      }
+      else {
+        if (indexof != -1)
+          this.filters.splice(indexof, 1);
+      }
+    }
+  }
+
+  remove(code: string): void {
+    let indexof = this.indexOF(code);
+    if (code === 'date') {
+      delete this.value.from;
+      delete this.value.to;
+      this.value = Object.create(this.value);
+    }
+    else
+      this.value[code] = null;
+    if (indexof != -1) this.filters.splice(indexof, 1);
+  }
+
+  removeAll(): void {
+    this.value = new ChargeFilter();
+    this.filters = [];
+  }
 }

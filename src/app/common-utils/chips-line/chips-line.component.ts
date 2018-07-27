@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CodeWithValue} from '../code-with-value';
-import {SearchFiltersHolderService} from '../services/search-filters-holder/search-filters-holder.service';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {TitleWithCode} from '../code-with-value';
 
 @Component({
   selector: 'app-chips-line',
@@ -9,32 +8,23 @@ import {SearchFiltersHolderService} from '../services/search-filters-holder/sear
 })
 export class ChipsLineComponent implements OnInit {
 
-  active: boolean = false;
-  @Output() activeChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  configure: boolean = false;
+  @Input() values: TitleWithCode[] = [];
+  @Output() removed: EventEmitter<string> = new EventEmitter<string>();
+  @Output() removedAll: EventEmitter<any> = new EventEmitter<any>();
 
-  filterService:SearchFiltersHolderService;
-
-  constructor( filterService:SearchFiltersHolderService) {
-    this.filterService = filterService;
+  constructor() {
   }
 
   ngOnInit() {
   }
 
-  remove(value: CodeWithValue): void {
-    this.filterService.remove(value.code);
+  remove(value: TitleWithCode): void {
+    this.removed.emit(value.code);
   }
 
   clear(): void {
-    this.filterService.clear();
+    this.removedAll.emit(true);
   }
 
-  protected activate(is: boolean): void {
-    this.active = is;
-    this.activeChange.emit(is);
-  }
-
-  isActive(): boolean{
-    return this.active;
-  }
 }
