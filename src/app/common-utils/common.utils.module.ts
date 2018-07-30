@@ -44,7 +44,7 @@ const DATE_FORMATS = {
   exports: [ChipsLineComponent, StrFieldComponent, DateFieldComponent ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
-    // {provide: DateAdapter, useClass: DateFieldAdapter},
+    {provide: DateAdapter, useClass: DateFieldAdapter},
     {provide: MAT_DATE_FORMATS, useValue: DATE_FORMATS}
   ]
 })

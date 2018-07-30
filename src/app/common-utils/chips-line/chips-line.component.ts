@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {TitleWithCode} from '../code-with-value';
+import {CodeWithValue} from '../code-with-value';
 
 @Component({
   selector: 'app-chips-line',
@@ -9,7 +9,7 @@ import {TitleWithCode} from '../code-with-value';
 export class ChipsLineComponent implements OnInit {
 
   configure: boolean = false;
-  @Input() values: TitleWithCode[] = [];
+  @Input() values: CodeWithValue[] = [];
   @Output() removed: EventEmitter<string> = new EventEmitter<string>();
   @Output() removedAll: EventEmitter<any> = new EventEmitter<any>();
 
@@ -19,7 +19,7 @@ export class ChipsLineComponent implements OnInit {
   ngOnInit() {
   }
 
-  remove(value: TitleWithCode): void {
+  remove(value: CodeWithValue): void {
     this.removed.emit(value.code);
   }
 

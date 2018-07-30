@@ -1,5 +1,5 @@
 
-export class TitleWithCode {
+export class CodeWithValue {
   code: string;
-  title: string;
+  value: string;
 }
