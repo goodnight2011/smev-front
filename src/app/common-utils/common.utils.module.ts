@@ -13,6 +13,9 @@ import {StrFieldComponent} from './str-field/str-field.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DateFieldComponent} from './date-field/date-field.component';
 import {DateFieldAdapter} from './date-field/date-field.adapter';
+import {ContAccDirective} from './cont-acc/cont-acc.directive';
+import {GenericContComponent} from './generic-cont/generic-cont.component';
+import {DataHolderStrComponent} from './data-holder-str/data-holder-str.component';
 
 const DATE_FORMATS = {
   parse: {
@@ -25,6 +28,7 @@ const DATE_FORMATS = {
     monthYearA11yLabel: {year: 'numeric', month: 'numeric'},
   }
 };
+
 @NgModule({
   imports: [
     FormsModule,
@@ -40,8 +44,9 @@ const DATE_FORMATS = {
     BrowserModule,
     BrowserAnimationsModule,
   ],
-  declarations: [HintAutocompleteComponent, ChipsLineComponent, StrFieldComponent, DateFieldComponent],
-  exports: [ChipsLineComponent, StrFieldComponent, DateFieldComponent ],
+  entryComponents: [DataHolderStrComponent],
+  declarations: [HintAutocompleteComponent, ChipsLineComponent, StrFieldComponent, DateFieldComponent, ContAccDirective, GenericContComponent, DataHolderStrComponent],
+  exports: [ChipsLineComponent, StrFieldComponent, DateFieldComponent, GenericContComponent, DataHolderStrComponent],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
     {provide: DateAdapter, useClass: DateFieldAdapter},

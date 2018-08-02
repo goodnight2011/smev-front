@@ -1,7 +1,9 @@
 <div>
-  <app-chips-line [values]="filters ? filters.filtersTitles : []" (removed)="filters.remove($event)"
-                  (removedAll)="filters.removeAll()"></app-chips-line>
-  <app-filter-form [ngStyle]="chips && chips.configure ? {} :{display:'none'}"></app-filter-form>
-  <app-date-field [value]="date"></app-date-field>
-  <p>{{uin}}</p>
+  <!--<app-chips-line [values]="filters ? filters.filtersTitles : []" (removed)="filters.remove($event)"-->
+                  <!--(removedAll)="filters.removeAll()"></app-chips-line>-->
+  <!--<app-filter-form [ngStyle]="chips && chips.configure ? {} :{display:'none'}"></app-filter-form>-->
+  <!--<app-date-field [value]="date"></app-date-field>-->
+  <!--<p>{{uin}}</p>-->
+  <!--<app-data-holder-str [data]="charge"  [fldName]="'uin'" ></app-data-holder-str>-->
+  <app-generic-cont [data]="charge" [template]="chargeUinTemplate" [params]="chargeUinParams"></app-generic-cont>
 </div>
