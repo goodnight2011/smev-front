@@ -6,7 +6,7 @@ import {
   DateAdapter, MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
   MatAutocompleteModule, MatButtonModule, MatChipRemove, MatChipsModule, MatDatepickerModule, MatFormFieldModule, MatIconModule,
-  MatInputModule, MatNativeDateModule
+  MatInputModule, MatNativeDateModule, MatPaginatorModule, MatSortModule, MatTableModule
 } from '@angular/material';
 import {ChipsLineComponent} from './chips-line/chips-line.component';
 import {StrFieldComponent} from './str-field/str-field.component';
@@ -16,6 +16,7 @@ import {DateFieldAdapter} from './date-field/date-field.adapter';
 import {ContAccDirective} from './cont-acc/cont-acc.directive';
 import {GenericContComponent} from './generic-cont/generic-cont.component';
 import {DataHolderStrComponent} from './data-holder-str/data-holder-str.component';
+import { TableFldComponent } from './table-fld/table-fld.component';
 
 const DATE_FORMATS = {
   parse: {
@@ -43,9 +44,12 @@ const DATE_FORMATS = {
     MatNativeDateModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   entryComponents: [DataHolderStrComponent],
-  declarations: [HintAutocompleteComponent, ChipsLineComponent, StrFieldComponent, DateFieldComponent, ContAccDirective, GenericContComponent, DataHolderStrComponent],
+  declarations: [HintAutocompleteComponent, ChipsLineComponent, StrFieldComponent, DateFieldComponent, ContAccDirective, GenericContComponent, DataHolderStrComponent, TableFldComponent],
   exports: [ChipsLineComponent, StrFieldComponent, DateFieldComponent, GenericContComponent, DataHolderStrComponent],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
