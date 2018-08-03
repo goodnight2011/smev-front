@@ -5,5 +5,6 @@
   <!--<app-date-field [value]="date"></app-date-field>-->
   <!--<p>{{uin}}</p>-->
   <!--<app-data-holder-str [data]="charge"  [fldName]="'uin'" ></app-data-holder-str>-->
-  <app-generic-cont [data]="charge" [template]="chargeUinTemplate" [params]="chargeUinParams"></app-generic-cont>
+  <!--<app-generic-cont [data]="charge" [template]="chargeUinTemplate" [params]="chargeUinParams"></app-generic-cont>-->
+  <app-table-fld [colProps]="colProps" [data]="data" [displayedColumns]="['uin']"></app-table-fld>
 </div>

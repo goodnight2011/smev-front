@@ -5,6 +5,7 @@ import {CodeWithValue} from '../../common-utils/code-with-value';
 import {ChargePreview} from '../charge';
 import {DataHolder} from '../../common-utils/data-holder';
 import {DataHolderStrComponent} from '../../common-utils/data-holder-str/data-holder-str.component';
+import {ColProps} from '../../common-utils/table-fld/table-fld.component';
 
 @Component({
   selector: 'app-charges',
@@ -26,8 +27,17 @@ export class ChargesComponent implements OnInit, AfterViewInit {
     protocolNumber: 'protocolNumber',
   };
 
+  data: ChargePreview[] = ChargePreview.generate(20);
   chargeUinTemplate: Type<DataHolder<ChargePreview>> = DataHolderStrComponent;
   chargeUinParams: any = {fldName: 'uin'};
+  colProps: ColProps<ChargePreview>[] = [{
+    title: 'uin',
+    code: 'uin',
+    sortable: true,
+    template: DataHolderStrComponent,
+    params: {fldName: 'uin'}
+  }];
+
 
   constructor() {
   }

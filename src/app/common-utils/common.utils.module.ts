@@ -50,7 +50,7 @@ const DATE_FORMATS = {
   ],
   entryComponents: [DataHolderStrComponent],
   declarations: [HintAutocompleteComponent, ChipsLineComponent, StrFieldComponent, DateFieldComponent, ContAccDirective, GenericContComponent, DataHolderStrComponent, TableFldComponent],
-  exports: [ChipsLineComponent, StrFieldComponent, DateFieldComponent, GenericContComponent, DataHolderStrComponent],
+  exports: [ChipsLineComponent, StrFieldComponent, DateFieldComponent, GenericContComponent, DataHolderStrComponent, TableFldComponent],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
     {provide: DateAdapter, useClass: DateFieldAdapter},
