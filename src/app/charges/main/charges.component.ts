@@ -5,7 +5,7 @@ import {CodeWithValue} from '../../common-utils/code-with-value';
 import {ChargePreview} from '../charge';
 import {DataHolder} from '../../common-utils/data-holder';
 import {DataHolderStrComponent} from '../../common-utils/data-holder-str/data-holder-str.component';
-import {ColProps} from '../../common-utils/table-fld/table-fld.component';
+import {ColProps, ViewParams} from '../../common-utils/table-fld/table-fld.component';
 
 @Component({
   selector: 'app-charges',
@@ -18,39 +18,53 @@ export class ChargesComponent implements OnInit, AfterViewInit {
   @ViewChild(FilterFormComponent) filters: FilterFormComponent;
   date: Date;
   uin: string;
-  charge: ChargePreview = {
-    status: 'status',
-    uin: 'uin',
-    chargeDate: new Date(),
-    summ: '100500',
-    protocolDate: new Date(),
-    protocolNumber: 'protocolNumber',
-  };
 
-  data: ChargePreview[] = ChargePreview.generate(20);
-  chargeUinTemplate: Type<DataHolder<ChargePreview>> = DataHolderStrComponent;
-  chargeUinParams: any = {fldName: 'uin'};
+  amountOfAll: number = 50;
+  data: ChargePreview[] = ChargePreview.generate(this.amountOfAll);
+
   colProps: ColProps<ChargePreview>[] = [{
-    title: 'uin',
+    title: 'УИН',
     code: 'uin',
     sortable: true,
     template: DataHolderStrComponent,
     params: {fldName: 'uin'}
-  }];
+  }, {
+    title: 'ИНН',
+    code: 'inn',
+    sortable: true,
+    template: DataHolderStrComponent,
+    params: {fldName: 'inn'}
+  }, {
+    title: 'КПП',
+    code: 'kpp',
+    sortable: true,
+    template: DataHolderStrComponent,
+    params: {fldName: 'kpp'}
+  }, {
+    title: 'Номер аттестата аккредитации',
+    code: 'accName',
+    sortable: true,
+    template: DataHolderStrComponent,
+    params: {fldName: 'accName'}
+  },{
+    title: 'Сумма платежа',
+    code: 'summ',
+    sortable: true,
+    template: DataHolderStrComponent,
+    params: {fldName: 'summ'}
+  }
+  ];
+  displayedColumns: string[] = this.colProps.map(prop => prop.code);
+  viewParams: ViewParams = new ViewParams();
 
 
   constructor() {
   }
 
   ngAfterViewInit(): void {
-    // this.filters.filtersValues.subscribe(value => this.uin = value.uin);
   }
 
   ngOnInit() {
-  }
-
-  mutateDate(): void {
-    this.date = new Date();
   }
 
 }

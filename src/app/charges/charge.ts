@@ -10,7 +10,7 @@ export class ChargePreview {
   accSertNumber?: string;
   accName?: string;
 
-  static generate(amount: number): ChargePreview[] {
+  public static generate(amount: number): ChargePreview[] {
     let ret: ChargePreview[] = [];
     let startDate = new Date();
     startDate.setFullYear(startDate.getFullYear() - 1);

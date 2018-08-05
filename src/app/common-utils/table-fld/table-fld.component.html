@@ -1,24 +1,15 @@
-<table mat-table matSort [dataSource]="data" matSortActive="{{viewParams!.sortBy}}" matSortDirection="{{viewParams}}">
-  <ng-template ngFor [ngForOf]="colProps" let-prop>
-    <ng-template ngIf [ngIf]="prop.sortable">
+<p>status: {{status}}</p>
+<table mat-table matSort (sort)="onSortChange($event)" [dataSource]="currentData" matSortActive="{{currentViewParams!.sortByColumn}}" matSortDirection="{{currentViewParams!.sortByDirection}}">
+  <ng-template ngFor [ngForOf]="colProps" let-prop >
       <ng-container matColumnDef="{{prop.code}}">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{prop.title}}</th>
         <td mat-cell *matCellDef="let row">
           <app-generic-cont [data]="row" [params]="prop.params" [template]="prop.template"></app-generic-cont>
         </td>
       </ng-container>
-    </ng-template>
-    <ng-template ngIf [ngIf]="!prop.sortable">
-      <ng-container matColumnDef="{{prop.code}}">
-        <th mat-header-cell *matHeaderCellDef>{{prop.title}}</th>
-        <td mat-cell *matCellDef="let row">
-          <app-generic-cont [data]="row" [params]="prop.params" [template]="prop.template"></app-generic-cont>
-        </td>
-      </ng-container>
-    </ng-template>
   </ng-template>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-<mat-paginator [pageSize]="viewParams.pageSize" [pageIndex]="viewParams.pageIndex" [length]=""></mat-paginator>
+<mat-paginator (page)="onPageChange($event)" [pageSize]="currentViewParams.pageSize" [pageIndex]="currentViewParams.pageIndex" [length]="amountOfAll"></mat-paginator>
