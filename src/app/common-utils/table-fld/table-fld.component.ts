@@ -18,12 +18,17 @@ export class ViewParams {
   pageSize: number = 20;
 }
 
+export class DataCell<T> {
+  data: T[];
+  promise: Promise<T[]>;
+}
+
 export interface DataResoler<T> {
-  resolve(params: ViewParams): T[];
+  resolve(params: ViewParams): Promise<T[]>;
 }
 
 export interface AmountResolver {
-  resolve(): number;
+  resolve(): Promise<number>;
 }
 
 @Component({
@@ -33,7 +38,7 @@ export interface AmountResolver {
 })
 export class TableFldComponent<T> implements OnInit {
   @Input() colProps: ColProps<T>[];
-  @Input() dataResolver: DataResoler;
+  @Input() dataResolver: DataResoler<T>;
   @Input() amountResolver: AmountResolver;
 
   @Output() viewParamsChange: EventEmitter<ViewParams> = new EventEmitter<ViewParams>();
@@ -42,14 +47,19 @@ export class TableFldComponent<T> implements OnInit {
   data: { [key: number ]: T[] };
   currentData: T[];
   currentViewParams: ViewParams = new ViewParams();
-  status: string = '';
+
+  loadingData: boolean;
+  loadingAmount: boolean;
+
+  version: number = 0;
+  error: Error = null;
 
   @Input() displayedColumns: string[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   @Input()
-  set viewParams(params: ViewParams): void {
+  set viewParams(params: ViewParams) {
     this.currentViewParams = params;
     this.invalidate();
   }
@@ -58,10 +68,27 @@ export class TableFldComponent<T> implements OnInit {
   }
 
   ngOnInit() {
+    this.invalidate();
   }
 
   invalidate(): void {
-
+    this.amountOfAll = 0;
+    this.data = {};
+    this.currentData = [];
+    this.loadingData = true;
+    this.loadingAmount = true;
+    this.version = this.version + 1;
+    this.error = null;
+    this.resolve();
+    let currentVersion = this.version;
+    this.amountResolver.resolve().then(
+      amount => {
+        if (currentVersion === this.version) {
+          this.amountOfAll = amount;
+          this.loadingAmount = false;
+        }
+      }, err => this.resolveError(currentVersion, err)
+    );
   }
 
   onSortChange(sort: Sort) {
@@ -70,14 +97,41 @@ export class TableFldComponent<T> implements OnInit {
     this.invalidate();
   }
 
-  onPageChange(pageEv: PageEvent) {
-    this.viewParams.pageSize = pageEv.pageSize;
-    this.viewParams.pageIndex = pageEv.pageIndex;
-    if (this.viewParams.pageSize !== pageEv.pageSize)
-      this.invalidate();
-    else {
 
+  resolveDataSet(index: number, version: number, values: T[]) {
+    if (this.version === version) {
+      this.data[index] = values;
+      if (this.currentViewParams.pageIndex === index) {
+        this.currentData = values;
+        this.loadingData = false;
+      }
     }
+  }
+
+  resolveError(version: number, error: Error) {
+    if (this.version === version) {
+      this.loadingAmount = false;
+      this.loadingData = false;
+      this.error = error;
+    }
+  }
+
+  resolve() {
+    let currentIndex = this.currentViewParams.pageIndex;
+    let currentVersion = this.version;
+
+    this.dataResolver.resolve(this.currentViewParams).then(
+      values => this.resolveDataSet(currentIndex, currentVersion, values),
+      err => this.resolveError(currentVersion, err)
+    );
+  }
+
+  onPageChange(pageEv: PageEvent) {
+    this.currentViewParams.pageSize = pageEv.pageSize;
+    this.currentViewParams.pageIndex = pageEv.pageIndex;
+    if (this.currentViewParams.pageSize !== pageEv.pageSize)
+      this.invalidate();
+    else this.resolve();
   }
 
 }

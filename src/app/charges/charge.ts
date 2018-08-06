@@ -10,11 +10,11 @@ export class ChargePreview {
   accSertNumber?: string;
   accName?: string;
 
-  public static generate(amount: number): ChargePreview[] {
+  public static generate(amount: number, offset: number): ChargePreview[] {
     let ret: ChargePreview[] = [];
     let startDate = new Date();
     startDate.setFullYear(startDate.getFullYear() - 1);
-    for (let i = 0; i < amount; i++) {
+    for (let i = offset; i < amount+ offset; i++) {
       ret.push({
         status: 'status' + i,
         uin: '111' + i,

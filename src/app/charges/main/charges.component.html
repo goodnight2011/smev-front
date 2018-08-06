@@ -6,5 +6,5 @@
   <!--<p>{{uin}}</p>-->
   <!--<app-data-holder-str [data]="charge"  [fldName]="'uin'" ></app-data-holder-str>-->
   <!--<app-generic-cont [data]="charge" [template]="chargeUinTemplate" [params]="chargeUinParams"></app-generic-cont>-->
-  <app-table-fld [colProps]="colProps" [amountOfAll]="amountOfAll" [data]="data" [displayedColumns]="displayedColumns" [viewParams]="viewParams"></app-table-fld>
+  <app-table-fld [displayedColumns]="displayedColumns" [viewParams]="viewParams" [amountResolver]="amountResolver" [colProps]="colProps" [dataResolver]="dataResolver"></app-table-fld>
 </div>

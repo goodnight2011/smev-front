@@ -1,5 +1,6 @@
-<p>status: {{status}}</p>
-<table mat-table matSort (sort)="onSortChange($event)" [dataSource]="currentData" matSortActive="{{currentViewParams!.sortByColumn}}" matSortDirection="{{currentViewParams!.sortByDirection}}">
+<p> {{loadingData ? "loadingData..." : "dataLoaded"}}</p>
+<p> {{loadingAmount ? "loadingAmount..." : "amount loaded"}}</p>
+<table mat-table matSort (matSortChange)="onSortChange($event)" [dataSource]="currentData" matSortActive="{{currentViewParams!.sortByColumn}}" matSortDirection="{{currentViewParams!.sortByDirection}}">
   <ng-template ngFor [ngForOf]="colProps" let-prop >
       <ng-container matColumnDef="{{prop.code}}">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{prop.title}}</th>
@@ -12,4 +13,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+<p>{{loadingData? 'loading data' : 'data loaded'}}</p>
 <mat-paginator (page)="onPageChange($event)" [pageSize]="currentViewParams.pageSize" [pageIndex]="currentViewParams.pageIndex" [length]="amountOfAll"></mat-paginator>
