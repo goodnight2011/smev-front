@@ -92,8 +92,8 @@ export class TableFldComponent<T> implements OnInit {
   }
 
   onSortChange(sort: Sort) {
-    this.viewParams.sortByColumn = sort.active;
-    this.viewParams.sortByDirection = sort.direction;
+    this.currentViewParams.sortByColumn = sort.active;
+    this.currentViewParams.sortByDirection = sort.direction;
     this.invalidate();
   }
 
@@ -120,10 +120,18 @@ export class TableFldComponent<T> implements OnInit {
     let currentIndex = this.currentViewParams.pageIndex;
     let currentVersion = this.version;
 
-    this.dataResolver.resolve(this.currentViewParams).then(
-      values => this.resolveDataSet(currentIndex, currentVersion, values),
-      err => this.resolveError(currentVersion, err)
-    );
+    if (this.data[currentIndex])
+      this.resolveDataSet(currentIndex, currentVersion, this.data[currentIndex]);
+    else {
+      this.loadingData = true;
+      if (this.data[currentIndex] === undefined) {
+        this.data[currentIndex] = null;
+        this.dataResolver.resolve(this.currentViewParams).then(
+          values => this.resolveDataSet(currentIndex, currentVersion, values),
+          err => this.resolveError(currentVersion, err)
+        );
+      }
+    }
   }
 
   onPageChange(pageEv: PageEvent) {
