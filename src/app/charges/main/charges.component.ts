@@ -5,7 +5,7 @@ import {CodeWithValue} from '../../common-utils/code-with-value';
 import {ChargePreview} from '../charge';
 import {DataHolder} from '../../common-utils/data-holder';
 import {DataHolderStrComponent} from '../../common-utils/data-holder-str/data-holder-str.component';
-import {AmountResolver, ColProps, DataResoler, ViewParams} from '../../common-utils/table-fld/table-fld.component';
+import {AmountResolver, ColProps, DataResoler, TableFldComponent, ViewParams} from '../../common-utils/table-fld/table-fld.component';
 
 @Component({
   selector: 'app-charges',
@@ -20,7 +20,7 @@ export class ChargesComponent implements OnInit, AfterViewInit {
   uin: string;
 
   amountOfAll: number = 50;
-  // data: ChargePreview[] = ChargePreview.generate(this.amountOfAll);
+
   amountResolver: AmountResolver = {
     resolve: () => new Promise((resolve, reject) => {
       setTimeout(() => resolve(this.amountOfAll), 2000);
@@ -68,6 +68,7 @@ export class ChargesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = this.colProps.map(prop => prop.code);
   viewParams: ViewParams = new ViewParams();
 
+  @ViewChild(TableFldComponent) table: TableFldComponent<ChargePreview>;
 
   constructor() {
   }

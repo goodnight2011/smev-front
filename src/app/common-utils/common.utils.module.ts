@@ -7,7 +7,7 @@ import {
   MAT_DATE_LOCALE,
   MatAutocompleteModule, MatButtonModule, MatChipRemove, MatChipsModule, MatDatepickerModule, MatFormFieldModule, MatIconModule,
   MatInputModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinner, MatProgressSpinnerModule, MatSortModule, MatSpinner,
-  MatTableModule
+  MatTableModule, MatToolbarModule
 } from '@angular/material';
 import {ChipsLineComponent} from './chips-line/chips-line.component';
 import {StrFieldComponent} from './str-field/str-field.component';

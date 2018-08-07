@@ -1,10 +1,11 @@
-<div>
-  <!--<app-chips-line [values]="filters ? filters.filtersTitles : []" (removed)="filters.remove($event)"-->
-                  <!--(removedAll)="filters.removeAll()"></app-chips-line>-->
-  <!--<app-filter-form [ngStyle]="chips && chips.configure ? {} :{display:'none'}"></app-filter-form>-->
-  <!--<app-date-field [value]="date"></app-date-field>-->
-  <!--<p>{{uin}}</p>-->
-  <!--<app-data-holder-str [data]="charge"  [fldName]="'uin'" ></app-data-holder-str>-->
-  <!--<app-generic-cont [data]="charge" [template]="chargeUinTemplate" [params]="chargeUinParams"></app-generic-cont>-->
-  <app-table-fld [displayedColumns]="displayedColumns" [viewParams]="viewParams" [amountResolver]="amountResolver" [colProps]="colProps" [dataResolver]="dataResolver"></app-table-fld>
-</div>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <app-chips-line [values]="filters ? filters.filtersTitles : []" (removed)="filters.remove($event)"
+                    (removedAll)="filters.removeAll()"></app-chips-line>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <app-filter-form [class.invisible]="chips.configure"></app-filter-form>
+  </mat-toolbar-row>
+</mat-toolbar>
+<app-table-fld [displayedColumns]="displayedColumns" [viewParams]="viewParams" [amountResolver]="amountResolver"
+               [colProps]="colProps" [dataResolver]="dataResolver"></app-table-fld>
