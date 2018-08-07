@@ -1,11 +1,7 @@
-<mat-toolbar>
-  <mat-toolbar-row>
-    <app-chips-line [values]="filters ? filters.filtersTitles : []" (removed)="filters.remove($event)"
-                    (removedAll)="filters.removeAll()"></app-chips-line>
-  </mat-toolbar-row>
-  <mat-toolbar-row>
-    <app-filter-form [class.invisible]="chips.configure"></app-filter-form>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div style="background: white;position: sticky;top:0;z-index: 1">
+  <app-chips-line [values]="filters ? filters.filtersTitles : []" (removed)="filters.remove($event)"
+                  (removedAll)="filters.removeAll()"></app-chips-line>
+  <app-filter-form [class.invisible]="chips.configure"></app-filter-form>
+</div>
 <app-table-fld [displayedColumns]="displayedColumns" [viewParams]="viewParams" [amountResolver]="amountResolver"
                [colProps]="colProps" [dataResolver]="dataResolver"></app-table-fld>
