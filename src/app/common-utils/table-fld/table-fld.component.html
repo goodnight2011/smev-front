@@ -1,17 +1,27 @@
-<p> {{loadingData ? "loadingData..." : "dataLoaded"}}</p>
-<p> {{loadingAmount ? "loadingAmount..." : "amount loaded"}}</p>
-<table mat-table matSort (matSortChange)="onSortChange($event)" [dataSource]="currentData" matSortActive="{{currentViewParams!.sortByColumn}}" matSortDirection="{{currentViewParams!.sortByDirection}}">
-  <ng-template ngFor [ngForOf]="colProps" let-prop >
-      <ng-container matColumnDef="{{prop.code}}">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{prop.title}}</th>
-        <td mat-cell *matCellDef="let row">
-          <app-generic-cont [data]="row" [params]="prop.params" [template]="prop.template"></app-generic-cont>
-        </td>
-      </ng-container>
-  </ng-template>
+<!--<p> {{loadingData ? "loadingData..." : "dataLoaded"}}</p>-->
+<!--<p> {{loadingAmount ? "loadingAmount..." : "amount loaded"}}</p>-->
+<div class="container mat-elevation-z8">
+  <div class="loading-shade" *ngIf="loadingData">
+    <mat-spinner></mat-spinner>
+  </div>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
-<p>{{loadingData? 'loading data' : 'data loaded'}}</p>
-<mat-paginator (page)="onPageChange($event)" [pageSize]="currentViewParams.pageSize" [pageIndex]="currentViewParams.pageIndex" [length]="amountOfAll"></mat-paginator>
+  <div class="table-container">
+    <table mat-table matSort (matSortChange)="onSortChange($event)" [dataSource]="currentData"
+           matSortActive="{{currentViewParams!.sortByColumn}}"
+           matSortDirection="{{currentViewParams!.sortByDirection}}">
+      <ng-template ngFor [ngForOf]="colProps" let-prop>
+        <ng-container matColumnDef="{{prop.code}}">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{prop.title}}</th>
+          <td mat-cell *matCellDef="let row">
+            <app-generic-cont [data]="row" [params]="prop.params" [template]="prop.template"></app-generic-cont>
+          </td>
+        </ng-container>
+      </ng-template>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <mat-paginator (page)="onPageChange($event)" [pageSize]="currentViewParams.pageSize"
+                 [pageIndex]="currentViewParams.pageIndex" [length]="amountOfAll"></mat-paginator>
+</div>

@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, Type, ViewChild} from '@angular/core';
 import {DataHolder} from '../data-holder';
-import {Observable} from 'rxjs';
 import {MatPaginator, MatSort, PageEvent, Sort, SortDirection} from '@angular/material';
 
 export class ColProps<T> {
@@ -16,11 +15,6 @@ export class ViewParams {
   sortByDirection?: SortDirection;
   pageIndex: number = 0;
   pageSize: number = 20;
-}
-
-export class DataCell<T> {
-  data: T[];
-  promise: Promise<T[]>;
 }
 
 export interface DataResoler<T> {
@@ -71,7 +65,7 @@ export class TableFldComponent<T> implements OnInit {
     this.invalidate();
   }
 
-  invalidate(): void {
+  private invalidate(): void {
     this.amountOfAll = 0;
     this.data = {};
     this.currentData = [];
@@ -79,16 +73,22 @@ export class TableFldComponent<T> implements OnInit {
     this.loadingAmount = true;
     this.version = this.version + 1;
     this.error = null;
-    this.resolve();
     let currentVersion = this.version;
-    this.amountResolver.resolve().then(
-      amount => {
-        if (currentVersion === this.version) {
-          this.amountOfAll = amount;
-          this.loadingAmount = false;
-        }
-      }, err => this.resolveError(currentVersion, err)
-    );
+    setTimeout(() => {this.invalidateLogic(currentVersion);}, 500);
+  }
+
+  private invalidateLogic(version: number){
+    if(version === this.version){
+      this.resolve();
+      this.amountResolver.resolve().then(
+        amount => {
+          if (version === this.version) {
+            this.amountOfAll = amount;
+            this.loadingAmount = false;
+          }
+        }, err => this.resolveError(version, err)
+      );
+    }
   }
 
   onSortChange(sort: Sort) {

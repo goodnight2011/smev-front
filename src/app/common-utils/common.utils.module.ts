@@ -6,7 +6,8 @@ import {
   DateAdapter, MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
   MatAutocompleteModule, MatButtonModule, MatChipRemove, MatChipsModule, MatDatepickerModule, MatFormFieldModule, MatIconModule,
-  MatInputModule, MatNativeDateModule, MatPaginatorModule, MatSortModule, MatTableModule
+  MatInputModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinner, MatProgressSpinnerModule, MatSortModule, MatSpinner,
+  MatTableModule
 } from '@angular/material';
 import {ChipsLineComponent} from './chips-line/chips-line.component';
 import {StrFieldComponent} from './str-field/str-field.component';
@@ -46,7 +47,8 @@ const DATE_FORMATS = {
     BrowserAnimationsModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
   ],
   entryComponents: [DataHolderStrComponent],
   declarations: [HintAutocompleteComponent, ChipsLineComponent, StrFieldComponent, DateFieldComponent, ContAccDirective, GenericContComponent, DataHolderStrComponent, TableFldComponent],
