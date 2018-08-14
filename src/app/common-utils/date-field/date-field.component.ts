@@ -14,9 +14,9 @@ export class DateFldConfig {
 export class DateFieldComponent implements OnInit {
 
   @Input() config: DateFldConfig = {};
-  @Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
-  date: FormControl = new FormControl(new Date());
-  @Input('value') value: Date;
+  @Input() value: Date;
+  @Input() disabled: boolean = false;
+  @Output() valueChange: EventEmitter<Date> = new EventEmitter<Date>();
 
   constructor() {
   }
@@ -25,6 +25,6 @@ export class DateFieldComponent implements OnInit {
   }
 
   onDate(date: Date): void {
-    this.dateChange.emit(date);
+    this.valueChange.emit(date);
   }
 }

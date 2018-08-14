@@ -105,4 +105,5 @@
 
 .mat-form-field-type-mat-chip-list .mat-form-field-infix{
   border-top: 0px;
+  min-height: 32px;
 }

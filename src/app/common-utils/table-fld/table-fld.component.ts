@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output, Type, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Inject, Input, OnInit, Output, Type, ViewChild} from '@angular/core';
 import {DataHolder} from '../data-holder';
 import {MatPaginator, MatSort, PageEvent, Sort, SortDirection} from '@angular/material';
+import {DOCUMENT} from '@angular/common';
 
 export class ColProps<T> {
   title: string;
@@ -58,11 +59,24 @@ export class TableFldComponent<T> implements OnInit {
     this.invalidate();
   }
 
-  constructor() {
+  constructor(@Inject(DOCUMENT) private document: any, private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.invalidate();
+
+    //FIXME: bad approach but workable :)
+    this.elementResize(this.document.body, () =>{
+        let elm = document.getElementById('table-content');
+        let paginator = document.getElementById('table-paginator');
+
+        let elmRect = elm.getBoundingClientRect();
+        let pagRect = paginator.getBoundingClientRect();
+
+        let viewPortHeight = document.documentElement.clientHeight;
+        let magicOffset = 10;
+        elm.style = 'max-height: '+(viewPortHeight - elmRect.top - (pagRect.bottom - pagRect.top)- magicOffset) + 'px';
+    });
   }
 
   private invalidate(): void {
@@ -140,6 +154,21 @@ export class TableFldComponent<T> implements OnInit {
     if (this.currentViewParams.pageSize !== pageEv.pageSize)
       this.invalidate();
     else this.resolve();
+  }
+
+  elementResize(elm: any, callback: any): void {
+    var lastHeight = elm.clientHeight, newHeight;
+    (function run() {
+      newHeight = elm.clientHeight;
+      if (lastHeight != newHeight)
+        callback();
+      lastHeight = newHeight;
+
+      if (elm.onElementHeightChangeTimer)
+        clearTimeout(elm.onElementHeightChangeTimer);
+
+      elm.onElementHeightChangeTimer = setTimeout(run, 200);
+    })();
   }
 
 }

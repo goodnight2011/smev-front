@@ -1,5 +1,6 @@
 table {
   width: 100%;
+  min-height: 150px;
 }
 
 .loading-shade {
@@ -9,7 +10,7 @@ table {
   bottom: 56px;
   right: 0;
   background: rgba(0, 0, 0, 0.15);
-  z-index: 1;
+  z-index: 101;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,6 +21,9 @@ table {
 }
 
 .table-container {
+  min-height: 150px;
   position: relative;
   overflow: auto;
+  /*max-height: 680px;*/
+  /*height:100%;*/
 }

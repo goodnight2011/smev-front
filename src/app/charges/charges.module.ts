@@ -7,6 +7,8 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {EditChargeComponent} from './edit-charge/edit-charge.component';
 import {MatToolbarModule} from '@angular/material';
+import { EditDatesComponent } from './edit-dates/edit-dates.component';
+import { RecipientFormComponent } from './recipient-form/recipient-form.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,7 @@ import {MatToolbarModule} from '@angular/material';
     MatToolbarModule,
   ],
   exports:[RouterModule],
-  declarations: [ChargesComponent, FilterFormComponent, EditChargeComponent]
+  declarations: [ChargesComponent, FilterFormComponent, EditChargeComponent, EditDatesComponent, RecipientFormComponent]
 })
 export class ChargesModule {
 }

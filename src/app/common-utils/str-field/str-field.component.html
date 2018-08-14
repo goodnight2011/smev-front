@@ -1,7 +1,15 @@
 <mat-form-field appearance="outline">
   <mat-label *ngIf="config.title">{{config.title}}</mat-label>
-  <input #fld [placeholder]="config!.placeholder" [value]="value ? value: ''" (input)="onValueChanges(fld)" matInput
-         [formControl]="formField">
+  <input #fld [placeholder]="config.placeholder ? config.placeholder : ''"
+         [value]="value ? value: ''" (input)="onValueChanges(fld)" matInput
+         [formControl]="formField"
+         [matAutocomplete]="auto">
   <mat-error *ngFor="let vld of errors()">{{vld.text}}</mat-error>
-  <mat-hint *ngIf="config!.hint">hint for fld</mat-hint>
+  <mat-hint *ngIf="config.hint">hint for fld</mat-hint>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let ahint of (config.hintsProvider ? config.hintsProvider : emptyElements) | async"
+                [value]="ahint">
+      {{ahint.value}}
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>
