@@ -11,7 +11,6 @@ export class StrFieldConfig {
   mask?: Mask;
   hint?: string;
   validators?: FldValidator[];
-  hintsProvider?: Observable<CodeWithValue[]>;
 }
 
 export class Mask {
@@ -57,11 +56,12 @@ export class HintUpdater<T>{
 })
 export class StrFieldComponent implements OnInit {
 
+  @Input() hintsObservable: Observable<CodeWithValue[]> = of([]);
   @Input() config: StrFieldConfig = new StrFieldConfig();
   @Input() value: string = '';
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
-  protected emptyElements: Observable<CodeWithValue[]> = of([]);
   protected formField ;
+  valueObservable: Subject<string> = new Subject<string>();
 
   validate(control: AbstractControl): ValidationErrors {
     if (!(this && this.config && this.config.validators))
@@ -99,6 +99,7 @@ export class StrFieldComponent implements OnInit {
 
     this.value = fld.value;
     this.valueChange.emit(fld.value);
+    this.valueObservable.next(fld.value);
   }
 
 

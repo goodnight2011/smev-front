@@ -7,8 +7,8 @@
   <mat-error *ngFor="let vld of errors()">{{vld.text}}</mat-error>
   <mat-hint *ngIf="config.hint">hint for fld</mat-hint>
   <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let ahint of (config.hintsProvider ? config.hintsProvider : emptyElements) | async"
-                [value]="ahint">
+    <mat-option *ngFor="let ahint of hintsObservable | async"
+                [value]="ahint.value">
       {{ahint.value}}
     </mat-option>
   </mat-autocomplete>

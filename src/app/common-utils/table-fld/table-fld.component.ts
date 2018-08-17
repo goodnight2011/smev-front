@@ -67,7 +67,7 @@ export class TableFldComponent<T> implements OnInit {
 
     //FIXME: bad approach but workable :)
     this.elementResize(this.document.body, () =>{
-        let elm = document.getElementById('table-content');
+        let elm: any = document.getElementById('table-content');
         let paginator = document.getElementById('table-paginator');
 
         let elmRect = elm.getBoundingClientRect();
