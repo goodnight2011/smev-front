@@ -1,11 +1,13 @@
-<mat-form-field appearance="outline">
+<mat-form-field appearance="outline" style="width:100%">
   <mat-label *ngIf="config.title">{{config.title}}</mat-label>
   <input #fld [placeholder]="config.placeholder ? config.placeholder : ''"
          [value]="value ? value: ''" (input)="onValueChanges(fld)" matInput
+         [ngModel]="value"
          [formControl]="formField"
+         [disabled]="_disabled"
          [matAutocomplete]="auto">
   <mat-error *ngFor="let vld of errors()">{{vld.text}}</mat-error>
-  <mat-hint *ngIf="config.hint">hint for fld</mat-hint>
+  <mat-hint *ngIf="config.hint">{{config.hint}}</mat-hint>
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let ahint of hintsObservable | async"
                 [value]="ahint.value">

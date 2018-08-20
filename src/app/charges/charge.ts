@@ -1,3 +1,5 @@
+import {Recipient} from './recipient';
+
 export class ChargePreview {
   status: string;
   uin: string;
@@ -45,4 +47,5 @@ export class Charge{
   protocolNumber: string;
   accSertNumber?: string;
   accName?: string;
+  recipient: Recipient;
 }

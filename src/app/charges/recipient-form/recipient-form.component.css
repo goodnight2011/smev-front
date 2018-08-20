@@ -1,0 +1,16 @@
+.full-width {
+  width: 100%;
+  text-align: center;
+  margin: 5px;
+}
+
+.half-width-block {
+  width: 100%;
+  display: inline-block;
+}
+
+.half-width {
+  display: inline-block;
+  margin: 5px;
+  width: 48%;
+}

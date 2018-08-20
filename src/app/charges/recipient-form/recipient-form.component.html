@@ -1,3 +1,37 @@
-<p>
-  recipient-form works!
-</p>
+<div class="full-width">
+  <div style="display: inline-block"><h4>Данные организации, являющейся получателем средств:</h4></div>
+  <button *ngIf="showDetails" style="display: inline-block" mat-icon-button (click)="expandDetails()"><mat-icon>expand_less</mat-icon></button>
+  <button *ngIf="!showDetails" style="display: inline-block" mat-icon-button (click)="expandDetails()"><mat-icon>expand_more</mat-icon></button>
+</div>
+<app-select-fld class="full-width" [title]="'Наименование'" [options]="recepientsOptions"
+                [selected]="chargeModel.charge.recipient"
+                (selectedChange)="selectRecipient($event)"></app-select-fld>
+<br>
+<div class="full-width" *ngIf="showDetails">
+  <div class="half-width-block">
+    <app-str-field class="half-width" [value]="chargeModel.charge.recipient.INN" [disabled]="true"
+                   [config]="{title: 'ИНН'}"></app-str-field>
+
+    <app-str-field class="half-width" [value]="chargeModel.charge.recipient.KPP" [disabled]="true"
+                   [config]="{title: 'КПП'}"></app-str-field>
+
+    <app-str-field class="half-width" [value]="chargeModel.charge.recipient.OGRN" [disabled]="true"
+                   [config]="{title: 'ОГРН'}"></app-str-field>
+
+    <app-str-field class="half-width" [value]="chargeModel.charge.recipient.account_number" [disabled]="true"
+                   [config]="{title: '№ Б/С'}"></app-str-field>
+  </div>
+  <div class="full-width"><h4>Данные банка в котором открыт счет</h4></div>
+
+  <app-str-field class="full-width" [disabled]="true" [value]="chargeModel.charge.recipient.bank_name"
+                 [config]="{title: 'Наименование'}"></app-str-field>
+  <br>
+  <div class="half-width-block">
+    <app-str-field class="half-width" [value]="chargeModel.charge.recipient.bank_BIK" [disabled]="true"
+                   [config]="{title: 'БИК'}"></app-str-field>
+
+    <app-str-field class="half-width" [value]="chargeModel.charge.recipient.correspondent_bank_account"
+                   [disabled]="true"
+                   [config]="{title: '№ К/С'}"></app-str-field>
+  </div>
+</div>

@@ -7,6 +7,8 @@ import {CodeWithValue} from '../../common-utils/code-with-value';
 import {Observable, of, ReplaySubject, Subject} from 'rxjs';
 import {HintUpdater, StrFieldComponent, StrFieldConfig} from '../../common-utils/str-field/str-field.component';
 import {debounceTime, distinctUntilChanged, map, switchAll} from 'rxjs/internal/operators';
+import {SelectValidator} from '../../common-utils/select-fld/select-fld.component';
+import {ALL_RECIPIENTS} from '../recipient';
 
 @Component({
   selector: 'app-edit-charge',
@@ -24,24 +26,13 @@ export class EditChargeComponent implements OnInit, AfterViewInit{
     charge: new Charge(),
     editMode: EditMode.Create
   };
-  fldConfig: StrFieldConfig = {
-    placeholder: 'enter text',
-    title: 'test text'
-  };
-  subject: Subject<CodeWithValue[] > = new Subject();
 
   ngOnInit() {
     this.chargeModel.charge.uin = this.route.snapshot.paramMap.get('id');
     this.chargeModel.charge.sendDate = new Date("2018-08-01");
+    this.chargeModel.charge.recipient = ALL_RECIPIENTS[0];
   }
 
   ngAfterViewInit(): void {
-    let someshit = this.strField.valueObservable.pipe(
-      distinctUntilChanged(),
-      debounceTime(300),
-      map(str => [str, str + ' ' + str, str + ' ' + str + ' ' + str].map((v, i) => new CodeWithValue(v, v))),
-    );
-
-    someshit.subscribe(val => this.subject.next(val));
   }
 }

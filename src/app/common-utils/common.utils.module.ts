@@ -6,7 +6,8 @@ import {
   DateAdapter, MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
   MatAutocompleteModule, MatButtonModule, MatChipRemove, MatChipsModule, MatDatepickerModule, MatFormFieldModule, MatIconModule,
-  MatInputModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinner, MatProgressSpinnerModule, MatSortModule, MatSpinner,
+  MatInputModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinner, MatProgressSpinnerModule, MatSelectModule, MatSortModule,
+  MatSpinner,
   MatTableModule, MatToolbarModule
 } from '@angular/material';
 import {ChipsLineComponent} from './chips-line/chips-line.component';
@@ -18,6 +19,7 @@ import {ContAccDirective} from './cont-acc/cont-acc.directive';
 import {GenericContComponent} from './generic-cont/generic-cont.component';
 import {DataHolderStrComponent} from './data-holder-str/data-holder-str.component';
 import { TableFldComponent } from './table-fld/table-fld.component';
+import { SelectFldComponent } from './select-fld/select-fld.component';
 
 const DATE_FORMATS = {
   parse: {
@@ -49,10 +51,29 @@ const DATE_FORMATS = {
     MatSortModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatSelectModule
   ],
   entryComponents: [DataHolderStrComponent],
-  declarations: [HintAutocompleteComponent, ChipsLineComponent, StrFieldComponent, DateFieldComponent, ContAccDirective, GenericContComponent, DataHolderStrComponent, TableFldComponent],
-  exports: [ChipsLineComponent, StrFieldComponent, DateFieldComponent, GenericContComponent, DataHolderStrComponent, TableFldComponent],
+  declarations: [
+    HintAutocompleteComponent,
+    ChipsLineComponent,
+    StrFieldComponent,
+    DateFieldComponent,
+    ContAccDirective,
+    GenericContComponent,
+    DataHolderStrComponent,
+    TableFldComponent,
+    SelectFldComponent
+  ],
+  exports: [
+    ChipsLineComponent,
+    StrFieldComponent,
+    DateFieldComponent,
+    GenericContComponent,
+    DataHolderStrComponent,
+    TableFldComponent,
+    SelectFldComponent
+  ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
     {provide: DateAdapter, useClass: DateFieldAdapter},

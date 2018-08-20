@@ -59,9 +59,17 @@ export class StrFieldComponent implements OnInit {
   @Input() hintsObservable: Observable<CodeWithValue[]> = of([]);
   @Input() config: StrFieldConfig = new StrFieldConfig();
   @Input() value: string = '';
+  protected _disabled: boolean = false;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
   protected formField ;
   valueObservable: Subject<string> = new Subject<string>();
+
+  @Input() set disabled(disabled: boolean){
+    this._disabled = disabled;
+    if(disabled)
+      this.formField.disable();
+    else this.formField.enable();
+  }
 
   validate(control: AbstractControl): ValidationErrors {
     if (!(this && this.config && this.config.validators))

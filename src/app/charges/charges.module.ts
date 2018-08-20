@@ -6,7 +6,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {EditChargeComponent} from './edit-charge/edit-charge.component';
-import {MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import { EditDatesComponent } from './edit-dates/edit-dates.component';
 import { RecipientFormComponent } from './recipient-form/recipient-form.component';
 
@@ -20,6 +20,8 @@ import { RecipientFormComponent } from './recipient-form/recipient-form.componen
     CommonModule,
     RouterModule,
     MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   exports:[RouterModule],
   declarations: [ChargesComponent, FilterFormComponent, EditChargeComponent, EditDatesComponent, RecipientFormComponent]
