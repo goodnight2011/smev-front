@@ -1,7 +1,9 @@
-<!--<app-str-field [hintsObservable]="subject" [config]="fldConfig" ></app-str-field>-->
-<!--<app-select-fld [placeholder]="'placeholder'"-->
-                <!--[title]="'title'"-->
-                <!--[hint]="'hint for fld'"-->
-                <!--[options]="selectOptions"-->
-                <!--[validators]="selectValidators"></app-select-fld>-->
-<app-recipient-form [chargeModel]="chargeModel"></app-recipient-form>
+<div class="vertical-container content">
+  <app-edit-dates [chargeModel]="chargeModel"></app-edit-dates>
+  <app-recipient-form [chargeModel]="chargeModel"></app-recipient-form>
+  <app-common-info-form [model]="chargeModel"></app-common-info-form>
+  <div class="horizontal-container" style="justify-content:center; margin-top: 5px">
+    <button (click)="redirectBack()" mat-raised-button color="primary" style="align-self: flex-end; margin-right: 5px">Сохранить</button>
+    <button (click)="redirectBack()" mat-raised-button color="primary" style="align-self: flex-start;margin-left:5px">Отменить</button>
+  </div>
+</div>

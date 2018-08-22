@@ -1,4 +1,5 @@
 import {Recipient} from './recipient';
+import {CommonInfo} from './common-info-form/common-info';
 
 export class ChargePreview {
   status: string;
@@ -48,4 +49,5 @@ export class Charge{
   accSertNumber?: string;
   accName?: string;
   recipient: Recipient;
+  commonInfo: CommonInfo;
 }

@@ -1,0 +1,25 @@
+<div class="vertical-container">
+  <app-str-field class="flex-grow" [value]="model.charge.commonInfo.purpose"
+                 [config]="{title: 'Назначение платежа'}"></app-str-field>
+  <div class="horizontal-container">
+    <app-str-field class="flex-grow" [(value)]="model.charge.commonInfo.summ"
+                   [config]="{title: 'Сумма платежа', mask: {format: '[0-9]*'}}"></app-str-field>
+    <app-str-field class="flex-grow" [(value)]="model.charge.commonInfo.changeStatus"
+                   [config]="{title: 'Статус изменения данных начисления'}" [disabled]="true"></app-str-field>
+  </div>
+  <app-str-field class="flex-grow" [(value)]="model.charge.commonInfo.changeCause"
+                 [config]="{title: 'Основание изменения начисления'}"></app-str-field>
+  <div class="horizontal-container">
+    <app-select-fld class="flex-grow" [title]="'КБК'" [options]="kbkItems"
+                    [(selected)]="model.charge.commonInfo.kbk"></app-select-fld>
+    <app-str-field class="flex-grow" [config]="{title: 'ОКТМО получателя средств'}"
+                   [(value)]="model.charge.recipient.OKTMO"
+                   [disabled]="true"></app-str-field>
+  </div>
+  <div class="horizontal-container">
+    <app-str-field class="flex-grow" [config]="{title: '№ протокола'}"
+                   [(value)]="model.charge.commonInfo.protocolNumber"></app-str-field>
+    <app-date-field class="flex-grow" [config]="{title: 'Дата протокола'}"
+                    [(value)]="model.charge.commonInfo.protocolDate"></app-date-field>
+  </div>
+</div>

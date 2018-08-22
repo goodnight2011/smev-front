@@ -100,7 +100,7 @@ export class StrFieldComponent implements OnInit {
         || maxLength && fld.value.length > maxLength;
 
       if (incorrect) {
-        fld.value = this.value;
+        fld.value = typeof this.value ==='undefined' ? '' : this.value;
         return;
       }
     }

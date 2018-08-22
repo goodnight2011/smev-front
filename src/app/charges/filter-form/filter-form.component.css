@@ -7,3 +7,18 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+.vertical-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-grow{
+  flex-grow: 1;
+  padding: 5px;
+}

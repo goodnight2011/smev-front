@@ -6,6 +6,7 @@ import {ChargePreview} from '../charge';
 import {DataHolder} from '../../common-utils/data-holder';
 import {DataHolderStrComponent} from '../../common-utils/data-holder-str/data-holder-str.component';
 import {AmountResolver, ColProps, DataResoler, TableFldComponent, ViewParams} from '../../common-utils/table-fld/table-fld.component';
+import {TableMenuComponent} from '../table-menu/table-menu.component';
 
 @Component({
   selector: 'app-charges',
@@ -33,7 +34,14 @@ export class ChargesComponent implements OnInit, AfterViewInit {
     })
   };
 
-  colProps: ColProps<ChargePreview>[] = [{
+  colProps: ColProps<ChargePreview>[] = [
+  {
+    title: '',
+    code: 'action',
+    sortable: false,
+    template: TableMenuComponent,
+    params: {fldName: 'uin'}
+  }, {
     title: 'УИН',
     code: 'uin',
     sortable: true,
@@ -74,6 +82,7 @@ export class ChargesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.filters.filtersValues.subscribe(val => this.table.invalidate());
   }
 
   ngOnInit() {

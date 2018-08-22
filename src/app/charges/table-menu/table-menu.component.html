@@ -1,0 +1,21 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_horiz</mat-icon>
+</button>
+<mat-menu #menu="matMenu" >
+  <button mat-menu-item (click)="redirectToEdit()">
+   <mat-icon>remove_red_eye</mat-icon>
+    <span>Просмотр</span>
+  </button>
+  <button mat-menu-item (click)="redirectToEdit()">
+    <mat-icon>edit</mat-icon>
+    <span>Редактировать</span>
+  </button>
+  <button mat-menu-item (click)="redirectToEdit()">
+    <mat-icon>replay</mat-icon>
+    <span>Уточнить</span>
+  </button>
+  <button mat-menu-item (click)="redirectToEdit()">
+    <mat-icon>cancel</mat-icon>
+    <span>Аннулировать</span>
+  </button>
+</mat-menu>

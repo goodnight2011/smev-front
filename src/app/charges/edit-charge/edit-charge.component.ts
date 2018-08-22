@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {EditMode} from '../edit-mode';
 import {ChargeEditModel} from './charge-edit-model';
 import {Charge} from '../charge';
@@ -18,7 +18,7 @@ import {ALL_RECIPIENTS} from '../recipient';
 export class EditChargeComponent implements OnInit, AfterViewInit{
 
   @ViewChild(StrFieldComponent) strField: StrFieldComponent;
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
   }
 
   id: string;
@@ -31,8 +31,21 @@ export class EditChargeComponent implements OnInit, AfterViewInit{
     this.chargeModel.charge.uin = this.route.snapshot.paramMap.get('id');
     this.chargeModel.charge.sendDate = new Date("2018-08-01");
     this.chargeModel.charge.recipient = ALL_RECIPIENTS[0];
+    this.chargeModel.charge.commonInfo = {
+      purpose: '',
+      summ: '',
+      changeStatus: 'Новое',
+      changeCause: '',
+      kbk: null,
+      protocolNumber: '',
+      protocolDate: new Date()
+    };
   }
 
   ngAfterViewInit(): void {
+  }
+
+  redirectBack() {
+    this.router.navigate(['charges']);
   }
 }

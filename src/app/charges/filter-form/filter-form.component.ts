@@ -109,10 +109,12 @@ export class FilterFormComponent implements OnInit {
     else
       this.value[code] = null;
     if (indexof != -1) this.filtersTitles.splice(indexof, 1);
+    this.filtersValues.next(this.value);
   }
 
   removeAll(): void {
     this.value = new ChargeFilter();
     this.filtersTitles = [];
+    this.filtersValues.next(this.value);
   }
 }

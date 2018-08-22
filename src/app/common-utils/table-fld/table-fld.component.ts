@@ -79,7 +79,7 @@ export class TableFldComponent<T> implements OnInit {
     });
   }
 
-  private invalidate(): void {
+  invalidate(): void {
     this.amountOfAll = 0;
     this.data = {};
     this.currentData = [];

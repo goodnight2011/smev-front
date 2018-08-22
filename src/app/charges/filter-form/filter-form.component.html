@@ -1,9 +1,15 @@
-<form class="cont">
-  <app-str-field class="fld" [config]="uinConfig" [value]="value.uin " (valueChange)="updateValue('uin', $event)"></app-str-field>
-  <app-str-field class="fld" [config]="innConfig" [value]="value.inn " (valueChange)="updateValue('inn', $event)"></app-str-field>
-  <app-str-field class="fld" [config]="nakkConfig" [value]="value.nakk " (valueChange)="updateValue('nakk', $event)"></app-str-field>
-  <app-str-field class="fld" [config]="nameakkConfig" [value]="value.nameakk" (valueChange)="updateValue('nameakk', $event)"></app-str-field>
-  <app-str-field class="fld" [config]="summConfig" [value]="value.summ" (valueChange)="updateValue('summ', $event)"></app-str-field>
-  <app-date-field class="fld" [config]="fromConfig" [value]="value.from" (valueChange)="updateValue('from', $event)"></app-date-field>
-  <app-date-field class="fld" [config]="toConfig" [value]="value.to" (valueChange)="updateValue('to', $event)"></app-date-field>
+<form class="vertical-container">
+  <div class="horizontal-container">
+    <app-str-field class="flex-grow" [config]="uinConfig" [value]="value.uin " (valueChange)="updateValue('uin', $event)"></app-str-field>
+    <app-str-field class="flex-grow" [config]="innConfig" [value]="value.inn " (valueChange)="updateValue('inn', $event)"></app-str-field>
+    <app-str-field class="flex-grow" [config]="nakkConfig" [value]="value.nakk " (valueChange)="updateValue('nakk', $event)"></app-str-field>
+  </div>
+  <div class="horizontal-container">
+    <app-str-field class="flex-grow" [config]="nameakkConfig" [value]="value.nameakk" (valueChange)="updateValue('nameakk', $event)"></app-str-field>
+    <app-str-field class="flex-grow" [config]="summConfig" [value]="value.summ" (valueChange)="updateValue('summ', $event)"></app-str-field>
+  </div>
+  <div class="horizontal-container">
+    <app-date-field class="flex-grow" [config]="fromConfig" [value]="value.from" (valueChange)="updateValue('from', $event)"></app-date-field>
+    <app-date-field class="flex-grow" [config]="toConfig" [value]="value.to" (valueChange)="updateValue('to', $event)"></app-date-field>
+  </div>
 </form>
